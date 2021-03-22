@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<script src="https://vega.github.io/vega/vega.min.js"></script>
+	</head>
+	<body>
+		<div id="viz" style="height: 500px; width: 500px;"></div>
+	</body>
+	<script>
+		let scales = [
+			{
+				"name": "xscale",
+				"type": "linear",
+				"range": "width"
+			},
+			{
+				"name": "yscale",
+				"type": "linear",
+				"range": "height"
+			}
+		];
+		let axes = [
+			{
+				"scale": "xscale",
+				"orient": "bottom"
+			},
+			{
+				"scale": "yscale",
+				"orient": "left"
+			}
+		];
+		let spec = {
+			"description": "plotting axis",
+			"width": 500,
+			"height": 200,
+			"padding": 5,
+			"autosize": "pad",
+			"scales": scales,
+			"axes": axes
+		};
+		let runtime = new vega.parse({
+			spec
+		});
+		let view = new vega.View(runtime)
+				.logLevel(vega.Warn)
+				.renderer("svg")
+				.initialize("#viz")
+				.hover();
+	</script>
+</html>
